@@ -8,7 +8,13 @@
     <link rel="stylesheet" type="text/css" href="stylesheets/pygment_trac.css" media="screen">
     <link rel="stylesheet" type="text/css" href="stylesheets/print.css" media="print">
 
-    <title>Base-App-Util by remi-san</title>
+    <title>Base-App-Util by Remi San</title>
+	
+	<meta name="description" content="Java EE - Spring MVC Utilitaries">
+	<meta name="keywords" content="Java,Java EE,J2E,J2EE,Spring,MVC,Utilitaries" >
+	<meta name="author" content="Remi San<remi.san@gmail.com>">
+	
+	<script src="http://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
   </head>
 
   <body>
@@ -16,7 +22,7 @@
     <header>
       <div class="container">
         <h1>Base-App-Util</h1>
-        <h2>Spring MVC utilitaries</h2>
+        <h2>Java EE - Spring MVC Utilitaries</h2>
 
         <section id="downloads">
           <a href="https://github.com/remi-san/base-app-util/zipball/master" class="btn">Download as .zip</a>
@@ -28,13 +34,166 @@
 
     <div class="container">
       <section id="main_content">
-        <h1>
-<a name="base-app-util" class="anchor" href="#base-app-util"><span class="octicon octicon-link"></span></a>base-app-util</h1>
-
-<p>Spring MVC utilitaries</p>
+		<h3>Package content /</h3>
+		<ul>
+			<li class="directory">
+				<span class="directory-name" id="src/main/java">src/main/java</span>
+				<ul>
+					<li class="package">
+						<span class="package-name" id="net.remisan.base.app.config">net.remisan.base.app.config</span>
+						<ul>
+							<li class="strong" id="AppConfig.java">
+								<span class="file">AppConfig.java</span>
+								<p class="file-description"></p>
+							</li>
+							<li class="strong" id="PageConfig.java">
+								<span class="file">PageConfig.java</span>
+								<p class="file-description"></p>
+							</li>
+						</ul>
+					</li>
+					<li class="package">
+						<span class="package-name" id="net.remisan.base.app.form">net.remisan.base.app.form</span>
+						<ul>
+							<li class="strong" id="AbstractForm.java">
+								<span class="file">AbstractForm.java</span>
+								<p class="file-description"></p>
+							</li>
+							<li class="strong" id="AbstractPersistableEntityForm.java">
+								<span class="file">AbstractPersistableEntityForm.java</span>
+								<p class="file-description"></p>
+							</li>
+							<li class="strong" id="Form.java">
+								<span class="file">Form.java</span>
+								<p class="file-description"></p>
+							</li>
+							<li class="strong" id="PersistableEntityForm.java">
+								<span class="file">PersistableEntityForm.java</span>
+								<p class="file-description"></p>
+							</li>
+						</ul>
+					</li>
+					<li class="package">
+						<span class="package-name" id="net.remisan.base.app.helper">net.remisan.base.app.helper</span>
+						<ul>
+							<li class="strong" id="HtmlPageConfigHelper.java">
+								<span class="file">HtmlPageConfigHelper.java</span>
+								<p class="file-description"></p>
+							</li>
+						</ul>
+					</li>
+					<li class="package">
+						<span class="package-name" id="net.remisan.base.app.helper.impl">net.remisan.base.app.helper.impl</span>
+						<ul>
+							<li class="strong" id="AbstractHtmlPageConfigHelper.java">
+								<span class="file">AbstractHtmlPageConfigHelper.java</span>
+								<p class="file-description"></p>
+							</li>
+							<li class="strong" id="DefaultHtmlPageConfigHelper.java">
+								<span class="file">DefaultHtmlPageConfigHelper.java</span>
+								<p class="file-description"></p>
+							</li>
+						</ul>
+					</li>
+					<li class="package">
+						<span class="package-name" id="net.remisan.base.app.model">net.remisan.base.app.model</span>
+						<ul>
+							<li class="strong" id="RestList.java">
+								<span class="file">RestList.java</span>
+								<p class="file-description"></p>
+							</li>
+						</ul>
+					</li>
+					<li class="package">
+						<span class="package-name" id="net.remisan.base.controller">net.remisan.base.controller</span>
+						<ul>
+							<li class="strong" id="BaseController.java">
+								<span class="file">BaseController.java</span>
+								<p class="file-description"></p>
+							</li>
+							<li class="strong" id="CrudController.java">
+								<span class="file">CrudController.java</span>
+								<p class="file-description"></p>
+							</li>
+							<li class="strong" id="RestController.java">
+								<span class="file">RestController.java</span>
+								<p class="file-description"></p>
+							</li>
+						</ul>
+					</li>
+					<li class="package">
+						<span class="package-name" id="net.remisan.base.formatter">net.remisan.base.formatter</span>
+						<ul>
+							<li class="strong" id="SortFormatter.java">
+								<span class="file">SortFormatter.java</span>
+								<p class="file-description"></p>
+							</li>
+						</ul>
+					</li>
+					<li class="package">
+						<span class="package-name" id="net.remisan.base.html">net.remisan.base.html</span>
+						<ul>
+							<li class="strong" id="HtmlLink.java">
+								<span class="file">HtmlLink.java</span>
+								<p class="file-description"></p>
+							</li>
+							<li class="strong" id="HtmlMeta.java">
+								<span class="file">HtmlMeta.java</span>
+								<p class="file-description"></p>
+							</li>
+							<li class="strong" id="HtmlScript.java">
+								<span class="file">HtmlScript.java</span>
+								<p class="file-description"></p>
+							</li>
+						</ul>
+					</li>
+					<li class="package">
+						<span class="package-name" id="net.remisan.base.html.config">net.remisan.base.html.config</span>
+						<ul>
+							<li class="strong" id="HtmlPageConfiguration.java">
+								<span class="file">HtmlPageConfiguration.java</span>
+								<p class="file-description"></p>
+							</li>
+						</ul>
+					</li>
+				</ul>
+			</li>
+			<li class="directory">
+				<span class="directory-name" id="src/main/resources">src/main/resources</span>
+				<ul>
+					<li class="package">
+						<span class="package-name" id="net.remisan.base.app.config">META-INF</span>
+						<ul>
+							<li class="strong" id="log4j.xml">
+								<span class="file">log4j.xml</span>
+								<p class="file-description"></p>
+							</li>
+						</ul>
+					</li>
+					<li class="package">
+						<span class="package-name" id="net.remisan.base.app.config">META-INF/spring</span>
+						<ul>
+							<li class="strong" id="base-controller.xml">
+								<span class="file">base-controller.xml</span>
+								<p class="file-description"></p>
+							</li>
+						</ul>
+					</li>
+				</ul>
+			</li>
+		</ul>
       </section>
     </div>
-
-    
+	
+	<script type="application/javascript">
+	$(function() {
+		$('.package-name').click(function(e) {
+			$(e.target).next().toggle();
+		});
+		$('.file').click(function(e) {
+			//$(e.target).next().toggle();
+		});
+	});
+	</script>
   </body>
 </html>
