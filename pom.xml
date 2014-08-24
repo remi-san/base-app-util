@@ -10,9 +10,32 @@
 	<artifactId>app-util</artifactId>
 	<version>1.0.0-SNAPSHOT</version>
 	
-	<name></name>
-	<url></url>
-	<description></description>
+	<!--##################################################################################################-->
+	<!--######################################   Information   ###########################################-->
+	<!--##################################################################################################-->
+	
+	<name>App-Util</name>
+	<url>http://remi-san.github.io/base-app-util/</url>
+	<description>Library built on top of Base-Model containing a set of tools aimed at ease Spring MVC usage</description>
+	
+	<!--##################################################################################################-->
+	<!--########################################   Licenses   ############################################-->
+	<!--##################################################################################################-->
+	<licenses>
+    	<license>
+        	<name>Apache License, Version 2.0</name>
+      		<url>http://www.apache.org/licenses/LICENSE-2.0</url>
+      		<distribution>repo</distribution>
+    	</license>
+  	</licenses>
+  	
+  	<!--##################################################################################################-->
+	<!--###########################################   SCM   ##############################################-->
+	<!--##################################################################################################-->
+	
+	<scm>
+    	<url>https://github.com/remi-san/base-app-util</url>
+  	</scm>
 	
 	<!--##################################################################################################-->
 	<!--##################################################################################################-->
@@ -21,6 +44,11 @@
 	<!--##################################################################################################-->
 	
 	<properties>
+		<!-- github server corresponds to entry in ~/.m2/settings.xml -->
+    	<github.global.server>github</github.global.server>
+    	<github.repository>maven-repository</github.repository>
+    	<github.username>remi-san</github.username>
+	
 		<!-- Generic properties -->
 		<java.version>1.7</java.version>
 		<maven.test.failure.ignore>true</maven.test.failure.ignore>
@@ -283,6 +311,14 @@
 	<!--##################################################################################################-->
 	<!--##################################################################################################-->
 	
+	<distributionManagement>
+	    <repository>
+	        <id>internal.repo</id>
+	        <name>Temporary Staging Repository</name>
+	        <url>file://${project.build.directory}/mvn-repo</url>
+	    </repository>
+	</distributionManagement>
+	
 	<build>
 		<pluginManagement>
 	        <plugins>
@@ -315,6 +351,37 @@
 	          <target>${java.version}</target>
 	        </configuration>
 	      </plugin>
+	      <plugin>
+	        <artifactId>maven-deploy-plugin</artifactId>
+	        <version>2.8.1</version>
+	        <configuration>
+	            <altDeploymentRepository>internal.repo::default::file://${project.build.directory}/mvn-repo</altDeploymentRepository>
+	        </configuration>
+	      </plugin>
+	      <plugin>
+            <groupId>com.github.github</groupId>
+            <artifactId>site-maven-plugin</artifactId>
+            <version>0.9</version>
+            <configuration>
+                <message>Maven artifacts for ${project.version}</message>              <!-- git commit message -->
+                <noJekyll>true</noJekyll>                                              <!-- disable webpage processing -->
+                <merge>true</merge>                                                    <!-- allow multiple versions -->
+                <outputDirectory>${project.build.directory}/mvn-repo</outputDirectory> <!-- matches distribution management repository url above -->
+                <branch>refs/heads/mvn-repo</branch>                                   <!-- remote branch name -->
+                <includes><include>**/*</include></includes>
+                <repositoryName>${github.repository}</repositoryName>                  <!-- github repo name -->
+                <repositoryOwner>${github.username}</repositoryOwner>                  <!-- github username  -->
+            </configuration>
+            <executions>
+              <!-- run site-maven-plugin's 'site' target as part of the build's normal 'deploy' phase -->
+              <execution>
+                <goals>
+                  <goal>site</goal>
+                </goals>
+                <phase>deploy</phase>
+              </execution>
+            </executions>
+          </plugin>
 	    </plugins>
     </build> 
 </project>
