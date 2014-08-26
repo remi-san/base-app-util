@@ -74,7 +74,7 @@ public class CrudController<T extends PersistableEntity, S extends PersistableEn
         
         ModelAndView mav = this.getModelAndView(this.viewBasePath + "show/" + this.alias, request, response);
         mav.addObject("alias", this.alias);
-        mav.addObject("object", entity);
+        mav.addObject("entity", entity);
         
         return mav;
     }
@@ -89,7 +89,7 @@ public class CrudController<T extends PersistableEntity, S extends PersistableEn
         
         ModelAndView mav = this.getModelAndView(this.viewBasePath + "edit/" + this.alias, request, response);
         mav.addObject("alias", this.alias);
-        mav.addObject("object", entity);
+        mav.addObject("entity", entity);
         
         return mav;
     }
@@ -105,7 +105,7 @@ public class CrudController<T extends PersistableEntity, S extends PersistableEn
         
         ModelAndView mav = this.getModelAndView(this.viewBasePath + "edit/" + this.alias, request, response);
         mav.addObject("alias", this.alias);
-        mav.addObject("object", entity);
+        mav.addObject("entity", entity);
         
         return mav;
     }
@@ -118,6 +118,14 @@ public class CrudController<T extends PersistableEntity, S extends PersistableEn
         HttpServletRequest request,
         HttpServletResponse response
     ) throws BindException {
+        
+        if (result.hasErrors()) {
+            ModelAndView mav = this.getModelAndView(this.viewBasePath + "edit/" + this.alias, request, response);
+            mav.addObject("alias", this.alias);
+            mav.addObject("entity", form);
+            return mav;
+        }
+        
         Long id = form.getId();
         T entity = this.service.getByIdEager(id);
         form.updateObject(entity);
