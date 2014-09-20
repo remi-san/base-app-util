@@ -5,61 +5,69 @@ import java.util.List;
 
 import javax.xml.bind.annotation.XmlRootElement;
 
+import org.springframework.data.domain.Page;
+
 @XmlRootElement
 public class RestList<T> {
 
-    protected List<T> list;
-
+    protected List<T> elements;
+    
     protected int page;
 
-    protected int elementsPerPage;
+    protected int totalPages;
 
-    protected int totalElements;
+    protected long totalElements;
 
     public RestList() {
-        this.list = new ArrayList<T>();
+        this.elements = new ArrayList<T>();
         this.page = 1;
-        this.elementsPerPage = 20;
+        this.totalPages = 1;
         this.totalElements = 0;
     }
 
-    public RestList(List<T> list, int page, int elementsPerPage,
-            int totalElements) {
-        this.list = list;
+    public RestList(List<T> elements, int page, int totalPages, long totalElements) {
+        this.elements = elements;
         this.page = page;
-        this.elementsPerPage = elementsPerPage;
-        this.totalElements = elementsPerPage;
+        this.totalPages = totalPages;
+        this.totalElements = totalElements;
+    }
+    
+    public RestList(Page<T> page) {
+        this.elements = page.getContent();
+        this.page = page.getNumber();
+        this.totalPages = page.getTotalPages();
+        this.totalElements = page.getTotalElements();
+    }
+    
+    public List<T> getElements() {
+        return this.elements;
     }
 
-    public List<T> getList() {
-        return this.list;
+    public void setElements(List<T> elements) {
+        this.elements = elements;
     }
 
     public int getPage() {
         return this.page;
     }
 
-    public int getElementsPerPage() {
-        return this.elementsPerPage;
+    public int getTotalPages() {
+        return this.totalPages;
     }
 
-    public int getTotalElements() {
+    public long getTotalElements() {
         return this.totalElements;
-    }
-
-    public void setList(List<T> list) {
-        this.list = list;
     }
 
     public void setPage(int page) {
         this.page = page;
     }
 
-    public void setElementsPerPage(int elementsPerPage) {
-        this.elementsPerPage = elementsPerPage;
+    public void setTotalPages(int totalPages) {
+        this.totalPages = totalPages;
     }
 
-    public void setTotalElements(int totalElements) {
+    public void setTotalElements(long totalElements) {
         this.totalElements = totalElements;
     }
 }

@@ -5,7 +5,7 @@ import net.remisan.base.model.PersistableEntity;
 import net.remisan.base.service.Service;
 
 import org.springframework.beans.BeanUtils;
-import org.springframework.data.domain.Page;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Pageable;
 import org.springframework.validation.BindException;
 import org.springframework.validation.Errors;
@@ -15,20 +15,17 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-public class RestController<T extends PersistableEntity, S extends T> {
+public abstract class RestController<T extends PersistableEntity, S extends T> {
 
+    @Autowired
     protected Service<T> service;
     
     @RequestMapping(method = RequestMethod.GET)
-    @ResponseBody
     public RestList<T> list(Pageable pageable) {
-        Page<T> page = this.service.getAll(null, pageable);
-        
-        return new RestList<T>(page.getContent(), page.getNumber(), page.getSize(), page.getNumberOfElements());
+        return new RestList<T>(this.service.getAll(null, pageable));
     }
     
     @RequestMapping(value = "/{id:[0-9]+}", method = RequestMethod.GET)
-    @ResponseBody
     public T show(@PathVariable(value = "id") Long id) {
         return this.service.getById(id);
     }
