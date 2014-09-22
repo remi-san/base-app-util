@@ -111,13 +111,13 @@ public class CrudController<T extends PersistableEntity, S extends PersistableEn
     }
     
     @Transactional
-    @RequestMapping(value = "/update", method = RequestMethod.POST)
+    @RequestMapping(value = { "/update", "/create" }, method = RequestMethod.POST)
     public ModelAndView update(
         @ModelAttribute(value = "entity") @Valid S form,
         BindingResult result,
         HttpServletRequest request,
         HttpServletResponse response
-    ) throws BindException {
+    ) throws BindException, InstantiationException, IllegalAccessException {
         
         if (result.hasErrors()) {
             ModelAndView mav = this.getModelAndView(this.viewBasePath + "edit/" + this.alias, request, response);
@@ -127,11 +127,18 @@ public class CrudController<T extends PersistableEntity, S extends PersistableEn
         }
         
         Long id = form.getId();
-        T entity = this.service.getByIdEager(id);
+        T entity = null;
+        
+        if (id != null) {
+        	entity = this.service.getByIdEager(id);
+        } else {
+        	entity = this.service.getNewInstance();
+        }
+        
         form.updateObject(entity);
         this.service.save(entity);
         
-        return new ModelAndView("redirect:/" + this.requestBasePath + "/" + this.alias + "/show/" + id);
+        return new ModelAndView("redirect:/" + this.requestBasePath + "/" + this.alias + "/show/" + entity.getId());
     }
     
     @RequestMapping(value = "/delete/{id:[0-9]+}", method = RequestMethod.GET)
